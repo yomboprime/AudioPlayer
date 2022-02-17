@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Audio Player</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				color: #000;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<audio
+			controls
+			style="width:100%;"
+			id="theAudio">
+				Your browser does not support the
+				<code>audio</code> element.
+		</audio>
+
+		<script type="module">
+
+			const theAudio = document.getElementById( 'theAudio' );
+
+			const loadDiv = document.createElement( 'div' );
+			document.body.append( loadDiv );
+
+			const inputFile = document.createElement( 'input' );
+			inputFile.type = 'file';
+			inputFile.onchange = onFilesLoaded;
+			loadDiv.append( inputFile );
+
+			const controlsDiv = document.createElement( 'div' );
+			controlsDiv.style.position = 'absolute';
+			controlsDiv.style.bottom = '0px';
+			controlsDiv.style.width = '100%';
+			document.body.append( controlsDiv );
+
+			const playPauseButton = document.createElement( 'button' );
+			playPauseButton.innerHTML = 'Play/pause';
+			playPauseButton.style.height = '120px';
+			playPauseButton.style.width = '50%';
+			playPauseButton.onclick = () => {
+
+				theAudio.paused ? theAudio.play() : theAudio.pause();
+
+			};
+			controlsDiv.append( playPauseButton );
+
+			const rewindButton = document.createElement( 'button' );
+			rewindButton.innerHTML = 'Rewind';
+			rewindButton.style.height = '120px';
+			rewindButton.style.width = '50%';
+			rewindButton.onclick = () => {
+
+				theAudio.currentTime = theAudio.currentTime - 4;
+
+			};
+			controlsDiv.append( rewindButton );
+
+
+			function onFilesLoaded( event ) {
+
+				const files = event.target.files;
+
+				if ( ! files || files.length === 0 ) return;
+
+				loadAudioFile( files[ 0 ] );
+
+			}
+
+			function loadAudioFile( file ) {
+
+				const reader = new FileReader();
+
+				reader.onload = ( e ) => {
+
+					const fileContents = e.target.result;
+
+					loadSound( fileContents );
+
+				}
+
+				reader.onerror = function( e ) {
+
+					alert( "Error loading file " + file.name );
+
+				};
+
+				reader.readAsArrayBuffer( file );
+
+			}
+
+			function loadSound( fileContents ) {
+
+				const blob = new Blob( [ fileContents ] );
+
+				theAudio.src = window.URL.createObjectURL( blob );
+
+			}
+
+		</script>
+
+	</body>
+</html>
