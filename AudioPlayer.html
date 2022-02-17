@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
 			body {
-				color: #000;
+				color: #fff;
 				background-color: #000;
 			}
 		</style>
@@ -32,6 +32,7 @@
 			const inputFile = document.createElement( 'input' );
 			inputFile.type = 'file';
 			inputFile.onchange = onFilesLoaded;
+			inputFile.style.width = '100%';
 			loadDiv.append( inputFile );
 
 			const controlsDiv = document.createElement( 'div' );
