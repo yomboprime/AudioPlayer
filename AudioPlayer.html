@@ -41,21 +41,10 @@
 			controlsDiv.style.width = '100%';
 			document.body.append( controlsDiv );
 
-			const playPauseButton = document.createElement( 'button' );
-			playPauseButton.innerHTML = 'Play/pause';
-			playPauseButton.style.height = '120px';
-			playPauseButton.style.width = '50%';
-			playPauseButton.onclick = () => {
-
-				theAudio.paused ? theAudio.play() : theAudio.pause();
-
-			};
-			controlsDiv.append( playPauseButton );
-
 			const rewindButton = document.createElement( 'button' );
 			rewindButton.innerHTML = 'Rewind';
 			rewindButton.style.height = '120px';
-			rewindButton.style.width = '50%';
+			rewindButton.style.width = '33.33%';
 			rewindButton.onclick = () => {
 
 				theAudio.currentTime = theAudio.currentTime - 4;
@@ -63,6 +52,27 @@
 			};
 			controlsDiv.append( rewindButton );
 
+			const playPauseButton = document.createElement( 'button' );
+			playPauseButton.innerHTML = 'Play/pause';
+			playPauseButton.style.height = '120px';
+			playPauseButton.style.width = '33.33%';
+			playPauseButton.onclick = () => {
+
+				theAudio.paused ? theAudio.play() : theAudio.pause();
+
+			};
+			controlsDiv.append( playPauseButton );
+
+			const advanceButton = document.createElement( 'button' );
+			advanceButton.innerHTML = 'Advance';
+			advanceButton.style.height = '120px';
+			advanceButton.style.width = '33.33%';
+			advanceButton.onclick = () => {
+
+				theAudio.currentTime = theAudio.currentTime + 4;
+
+			};
+			controlsDiv.append( advanceButton );
 
 			function onFilesLoaded( event ) {
 
