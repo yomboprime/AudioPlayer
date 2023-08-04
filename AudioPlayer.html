@@ -48,7 +48,7 @@
 			rewindButton.style.width = '33.33%';
 			rewindButton.onclick = () => {
 
-				theAudio.currentTime = theAudio.currentTime - 4;
+				theAudio.currentTime = theAudio.currentTime - 10;
 
 			};
 			controlsDiv.append( rewindButton );
@@ -70,10 +70,36 @@
 			advanceButton.style.width = '33.33%';
 			advanceButton.onclick = () => {
 
-				theAudio.currentTime = theAudio.currentTime + 4;
+				theAudio.currentTime = theAudio.currentTime + 10;
 
 			};
+
 			controlsDiv.append( advanceButton );
+
+			window.addEventListener( 'keydown', ( event ) => {
+
+				switch ( event.key ) {
+
+					case 'o':
+						rewindButton.click();
+						break;
+
+					case 'p':
+						advanceButton.click();
+						break;
+
+					case ' ':
+						playPauseButton.click();
+						break;
+
+					default:
+						break;
+
+				}
+
+			} );
+
+
 
 			function onFilesLoaded( event ) {
 
